@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mundo Culinário - Pasta Italiana</title>
+
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background:#f8f8f8; color:#333; scroll-behavior:smooth; }
+
+/* HEADER */
+header {
+    background:#ff5722;
+    color:#fff;
+    padding:20px 0;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+    text-align:center;
+}
+header h1 { font-size:36px; }
+nav ul { list-style:none; display:flex; justify-content:center; flex-wrap:wrap; margin-top:10px; }
+nav ul li { margin: 0 15px; }
+nav ul li a { color:#fff; text-decoration:none; font-size:18px; transition:0.3s; }
+nav ul li a:hover { opacity:0.7; }
+
+/* BANNER */
+.banner {
+    background: url('https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=1950&q=80') no-repeat center/cover;
+    height:70vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+.banner::after {
+    content:'';
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.4);
+}
+.banner h2 { font-size:48px; z-index:1; animation:slideIn 2s ease forwards; }
+.banner p { font-size:22px; margin-top:10px; z-index:1; animation:fadeIn 3s ease forwards; }
+
+/* ANIMAÇÕES BANNER */
+@keyframes slideIn { from { transform:translateY(-50px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* SEÇÕES */
+section { padding:50px 20px; text-align:center; }
+section h2 { font-size:36px; margin-bottom:30px; position:relative; display:inline-block; }
+section h2::after { content:''; width:50px; height:3px; background:#ff5722; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); border-radius:3px; }
+
+/* CARDS */
+.cards { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+.card {
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,0.15);
+    width:300px;
+    transition:transform 0.3s, box-shadow 0.3s;
+    cursor:pointer;
+    position:relative;
+    text-decoration:none;
+}
+.card:hover { transform:translateY(-10px) scale(1.05); box-shadow:0 12px 25px rgba(0,0,0,0.25); }
+.card img { width:100%; height:200px; object-fit:cover; }
+.card-content { padding:15px; text-align:left; }
+.card-content h3 { font-size:24px; margin-bottom:10px; }
+.card-content p { color:#666; font-size:16px; margin-bottom:10px; }
+.card-content a { color:#ff5722; text-decoration:none; font-weight:bold; }
+
+/* MODAL */
+.modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); justify-content:center; align-items:center; z-index:2000; }
+.modal-content { background:#fff; padding:25px; border-radius:12px; max-width:500px; width:90%; text-align:left; position:relative; animation:fadeScale 0.4s ease; }
+.modal-content h3 { font-size:26px; margin-bottom:15px; }
+.modal-content p { font-size:16px; color:#555; }
+.close { position:absolute; top:10px; right:15px; font-size:28px; cursor:pointer; color:#ff5722; }
+
+@keyframes fadeScale { from {opacity:0; transform:scale(0.8);} to {opacity:1; transform:scale(1);} }
+
+/* CARROSSEL DICAS */
+.carousel { display:flex; overflow-x:auto; scroll-behavior:smooth; gap:15px; padding-bottom:10px; }
+.carousel::-webkit-scrollbar { display:none; }
+.carousel .card { flex:0 0 auto; width:250px; }
+
+/* BOTÃO TOPO */
+#topBtn { position:fixed; bottom:25px; right:25px; background:#ff5722; color:#fff; border:none; padding:12px 15px; border-radius:50%; font-size:20px; cursor:pointer; display:none; box-shadow:0 3px 6px rgba(0,0,0,0.3); }
+
+/* RESPONSIVO */
+@media(max-width:768px){ .cards, .carousel { flex-direction:column; align-items:center; } }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Mundo Culinário</h1>
+    <nav>
+        <ul>
+            <li><a href="#receita">Receita</a></li>
+            <li><a href="#dicas">Dicas</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="banner">
+    <h2>Pasta Italiana</h2>
+    <p>Descubra o sabor da verdadeira massa italiana!</p>
+</section>
+
+<section id="receita">
+    <h2>Receita em Destaque</h2>
+    <div class="cards">
+        <div class="card" data-receita="Ingredientes: Massa, molho pesto, queijo parmesão. Modo de preparo: Cozinhe a massa, misture com molho pesto e finalize com parmesão.">
+            <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?auto=format&fit=crop&w=640&q=80" alt="Pasta Italiana">
+            <div class="card-content">
+                <h3>Pasta Italiana</h3>
+                <p>Molho pesto tradicional da Itália.</p>
+                <a href="#">Ver Receita Completa</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="dicas">
+    <h2>Dicas de Culinária</h2>
+    <div class="carousel">
+        <div class="card" data-receita="Use água com sal para cozinhar massas, isso realça o sabor.">
+            <div class="card-content"><h3>Água Salgada</h3><p>Dica rápida para cozinhar massas perfeitas.</p></div>
+        </div>
+        <div class="card" data-receita="Sempre use azeite extra-virgem para finalizar pratos italianos.">
+            <div class="card-content"><h3>Azeite Extra</h3><p>Realça o sabor da sua comida.</p></div>
+        </div>
+        <div class="card" data-receita="Misture ervas frescas na hora de servir para um aroma incrível.">
+            <div class="card-content"><h3>Ervas Frescas</h3><p>Dicas para temperar e decorar pratos.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="site">
+    <h2>Como foi feito o site</h2>
+    <p>O site é uma página de culinária com o tema de pasta italiana. Ele possui uma estrutura simples com receitas, dicas de culinária e uma área "sobre" o site. O design é moderno, com efeitos visuais interessantes e uma navegação fácil. O JavaScript adiciona interatividade ao mostrar detalhes das receitas e dicas em pop-ups e ao permitir que o usuário navegue facilmente pela página com o botão de topo.</p>
+</section>
+
+<footer>
+    <p>&copy; 2025 Mundo Culinário | Todos os direitos reservados.</p>
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" id="closeBtn">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalText"></p>
+    </div>
+</div>
+
+<button id="topBtn">↑</button>
+
+<script>
+// MODAL
+const modal = document.getElementById("modal");
+const modalTitle = document.getElementById("modalTitle");
+const modalText = document.getElementById("modalText");
+
+document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+        modalTitle.innerText = card.querySelector("h3").innerText;
+        modalText.innerText = card.dataset.receita;
+        modal.style.display = "flex";
+    });
+});
+
+document.getElementById("closeBtn").onclick = () => modal.style.display = "none";
+window.onclick = (e) => { if(e.target==modal) modal.style.display="none"; }
+
+// BOTÃO TOPO
+const topBtn = document.getElementById("topBtn");
+window.addEventListener("scroll", () => {
+    topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+});
+topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+// FADE-IN DAS SEÇÕES
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.style.opacity=1;
+            entry.target.style.transition="opacity 1s ease-in";
+        }
+    });
+},{threshold:0.2});
+sections.forEach(sec=>observer.observe(sec));
+</script>
+
+</body>
+</html>
